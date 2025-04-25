@@ -1,0 +1,19 @@
+name = "instance-redirector" # Choose a name for your worker
+main = "src/index.js"       # Entry point file
+compatibility_date = "2024-03-20" # Use a recent compatibility date
+
+# Define Environment Variables
+[vars]
+# TARGET_SERVICE = "nitter" # Example: Set the default service (or get dynamically)
+INSTANCES_SOURCE_URL = "https://raw.githubusercontent.com/libredirect/instances/main/data.json"
+DEFAULT_TARGET_SERVICE = "redlib.clearnet" # Fallback if not set elsewhere
+
+# Define KV Namespace Binding
+[[kv_namespaces]]
+binding = "INSTANCE_CACHE_KV" # The name used in the script (env.INSTANCE_CACHE_KV)
+id = "YOUR_KV_NAMESPACE_ID"  # Get this from the Cloudflare dashboard after creating the KV namespace
+# preview_id = "YOUR_PREVIEW_KV_NAMESPACE_ID" # Optional: for wrangler dev
+
+[dev]
+# Optional: Define vars for local development with `wrangler dev`
+# vars = { TARGET_SERVICE = "piped" }
